@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAJELA Staffing Agency | Professional Recruitment & Outsourcing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 hero-pattern">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <div class="w-10 h-10 bg-brand-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">R</div>
+                        <span class="font-bold text-xl text-gray-900">RAJELA</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-brand-600 px-3 py-2 rounded-md text-sm font-medium transition">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-brand-600 px-3 py-2 rounded-md text-sm font-medium transition">Services</a>
+                    <a href="#request" class="text-gray-700 hover:text-brand-600 px-3 py-2 rounded-md text-sm font-medium transition">Hire Staff</a>
+                    <a href="#payment" class="text-gray-700 hover:text-brand-600 px-3 py-2 rounded-md text-sm font-medium transition">Payment</a>
+                    <a href="#contact" class="text-gray-700 hover:text-brand-600 px-3 py-2 rounded-md text-sm font-medium transition">Contact</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="openAdminModal()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-2">
+                        <i class="fas fa-lock"></i> Admin
+                    </button>
+                    <a href="https://tiktok.com/@rajelastaffingagency" target="_blank" class="text-gray-700 hover:text-black transition">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="slide-in">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 text-brand-700 text-sm font-semibold mb-6">
+                    <span class="relative flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-500"></span>
+                    </span>
+                    Now Hiring: Multiple Positions Available
+                </div>
+                <h1 class="text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                    Find Your Perfect <span class="gradient-text">Workforce</span> Match
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    RAJELA Staffing Agency connects businesses with top-tier talent. From temporary staffing to permanent placements, we deliver qualified professionals tailored to your needs.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="scrollToSection('request')" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                        <i class="fas fa-briefcase"></i> Request Staff
+                    </button>
+                    <button onclick="scrollToSection('services')" class="bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-200 px-8 py-4 rounded-xl font-semibold text-lg transition flex items-center justify-center gap-2">
+                        <i class="fas fa-info-circle"></i> Our Services
+                    </button>
+                </div>
+                <div class="mt-8 flex items-center gap-4 text-sm text-gray-500">
+                    <div class="flex -space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-brand-200 border-2 border-white flex items-center justify-center text-xs font-bold text-brand-700">JD</div>
+                        <div class="w-8 h-8 rounded-full bg-purple-200 border-2 border-white flex items-center justify-center text-xs font-bold text-purple-700">AS</div>
+                        <div class="w-8 h-8 rounded-full bg-green-200 border-2 border-white flex items-center justify-center text-xs font-bold text-green-700">MK</div>
+                    </div>
+                    <p>Trusted by 500+ companies</p>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-400 to-purple-400 rounded-3xl transform rotate-3 opacity-20"></div>
+                <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Professional team" class="relative rounded-3xl shadow-2xl w-full object-cover h-[500px]">
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl max-w-xs">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900">Fast Placement</p>
+                            <p class="text-sm text-gray-500">48hr average</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-brand-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <p class="text-4xl font-bold mb-2" id="stat1">2,500+</p>
+                    <p class="text-brand-200">Staff Placed</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold mb-2" id="stat2">500+</p>
+                    <p class="text-brand-200">Happy Clients</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold mb-2" id="stat3">98%</p>
+                    <p class="text-brand-200">Success Rate</p>
+                </div>
+                <div>
+                    <p class="text-4xl font-bold mb-2" id="stat4">24/7</p>
+                    <p class="text-brand-200">Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Staffing Solutions</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Comprehensive recruitment services designed to meet your specific business needs</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border border-gray-100">
+                <div class="w-14 h-14 bg-brand-100 rounded-xl flex items-center justify-center text-brand-600 text-2xl mb-6">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Temporary Staffing</h3>
+                <p class="text-gray-600 mb-4">Quick solutions for seasonal peaks, project-based work, or emergency coverage with qualified temporary staff.</p>
+                <ul class="space-y-2 text-sm text-gray-500">
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Same-day availability</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> No long-term commitment</li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border border-gray-100">
+                <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 text-2xl mb-6">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Permanent Placement</h3>
+                <p class="text-gray-600 mb-4">Find your next permanent team member through our rigorous screening and matching process.</p>
+                <ul class="space-y-2 text-sm text-gray-500">
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Background verified</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Skills assessment</li>
+                </ul>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow-lg card-hover border border-gray-100">
+                <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Executive Search</h3>
+                <p class="text-gray-600 mb-4">C-suite and senior management recruitment for critical leadership positions.</p>
+                <ul class="space-y-2 text-sm text-gray-500">
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Confidential search</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Industry specialists</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-12 grid md:grid-cols-2 gap-8">
+            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white">
+                <h3 class="text-2xl font-bold mb-4">Industries We Serve</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex items-center gap-2"><i class="fas fa-hospital text-brand-400"></i> Healthcare</div>
+                    <div class="flex items-center gap-2"><i class="fas fa-laptop-code text-brand-400"></i> IT & Tech</div>
+                    <div class="flex items-center gap-2"><i class="fas fa-truck text-brand-400"></i> Logistics</div>
+                    <div class="flex items-center gap-2"><i class="fas fa-utensils text-brand-400"></i> Hospitality</div>
+                    <div class="flex items-center gap-2"><i class="fas fa-money-bill-wave text-brand-400"></i> Finance</div>
+                    <div class="flex items-center gap-2"><i class="fas fa-hard-hat text-brand-400"></i> Construction</div>
+                </div>
+            </div>
+            <div class="bg-brand-50 rounded-2xl p-8 border border-brand-100">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Why Choose RAJELA?</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-star text-yellow-500 mt-1"></i>
+                        <span class="text-gray-700">Pre-screened, qualified candidates ready to work</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-star text-yellow-500 mt-1"></i>
+                        <span class="text-gray-700">Competitive rates with transparent pricing</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-star text-yellow-500 mt-1"></i>
+                        <span class="text-gray-700">Dedicated account management</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fas fa-star text-yellow-500 mt-1"></i>
+                        <span class="text-gray-700">Replacement guarantee on all placements</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Staff Request Form -->
+    <section id="request" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Request Staff</h2>
+                <p class="text-gray-600">Tell us what you need and we'll find the perfect candidates for your business</p>
+            </div>
+
+            <form id="staffRequestForm" class="bg-gray-50 rounded-2xl p-8 shadow-lg border border-gray-200">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Company/Business Name *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="Your company name">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Contact Person *</label>
+                        <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="Full name">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="email@company.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                        <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="Phone number">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Type of Staff Needed *</label>
+                    <select required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition">
+                        <option value="">Select category</option>
+                        <option value="admin">Administrative/Office Staff</option>
+                        <option value="sales">Sales & Marketing</option>
+                        <option value="tech">IT & Technical</option>
+                        <option value="healthcare">Healthcare Workers</option>
+                        <option value="hospitality">Hospitality & Events</option>
+                        <option value="industrial">Industrial & Warehouse</option>
+                        <option value="executive">Executive/Management</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Staff *</label>
+                        <input type="number" min="1" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="How many people?">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Employment Type *</label>
+                        <select required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition">
+                            <option value="">Select type</option>
+                            <option value="temporary">Temporary/Contract</option>
+                            <option value="permanent">Permanent/Full-time</option>
+                            <option value="parttime">Part-time</option>
+                            <option value="project">Project-based</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Specific Requirements</label>
+                    <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="Qualifications, experience level, specific skills, certifications needed..."></textarea>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Budget/Rate (₦) *</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-3 text-gray-500">₦</span>
+                        <input type="number" required class="w-full pl-8 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition" placeholder="Amount willing to pay per month/per hour">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-1">Enter your budget range for the position(s)</p>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Start Date</label>
+                    <input type="date" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition">
+                </div>
+
+                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane"></i> Submit Request
+                </button>
+                <p class="text-center text-sm text-gray-500 mt-4">We'll respond within 24 hours</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Make Payment</h2>
+                <p class="text-gray-600">Secure payment processing for recruitment fees and staffing services</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="bg-brand-600 px-8 py-6 text-white">
+                    <h3 class="text-2xl font-bold">Payment Details</h3>
+                    <p class="text-brand-100">Secure SSL encrypted transaction</p>
+                </div>
+
+                <div class="p-8">
+                    <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <div class="border-2 border-brand-200 rounded-xl p-4 flex flex-col items-center cursor-pointer hover:border-brand-500 transition bg-brand-50">
+                            <i class="fas fa-credit-card text-3xl text-brand-600 mb-2"></i>
+                            <span class="font-semibold text-sm">Card Payment</span>
+                            <span class="text-xs text-gray-500">Visa, MasterCard, Verve</span>
+                        </div>
+                        <div class="border-2 border-gray-200 rounded-xl p-4 flex flex-col items-center cursor-pointer hover:border-brand-500 transition">
+                            <i class="fas fa-mobile-alt text-3xl text-green-600 mb-2"></i>
+                            <span class="font-semibold text-sm">Bank Transfer</span>
+                            <span class="text-xs text-gray-500">USSD, Mobile Banking</span>
+                        </div>
+                        <div class="border-2 border-gray-200 rounded-xl p-4 flex flex-col items-center cursor-pointer hover:border-brand-500 transition">
+                            <i class="fas fa-university text-3xl text-purple-600 mb-2"></i>
+                            <span class="font-semibold text-sm">Bank Deposit</span>
+                            <span class="text-xs text-gray-500">Walk-in Payment</span>
+                        </div>
+                    </div>
+
+                    <form id="paymentForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Client/Company Name *</label>
+                            <input type="text" id="payName" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 outline-none transition" placeholder="Your name or company name">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" id="payEmail" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 outline-none transition" placeholder="For receipt">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Payment Purpose *</label>
+                            <select id="payPurpose" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 outline-none transition">
+                                <option value="">Select purpose</option>
+                                <option value="placement">Placement Fee</option>
+                                <option value="retainer">Monthly Retainer</option>
+                                <option value="contract">Contract Staff Payment</option>
+                                <option value="consultation">Consultation Fee</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Amount (₦) *</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-3 text-gray-500 font-bold">₦</span>
+                                <input type="number" id="payAmount" min="1000" required class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 outline-none transition text-lg font-semibold" placeholder="0.00">
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-gray-600">Subtotal</span>
+                                <span class="font-semibold" id="subtotal">₦0.00</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-gray-600">Processing Fee (1.5%)</span>
+                                <span class="font-semibold" id="fee">₦0.00</span>
+                            </div>
+                            <div class="border-t pt-2 flex justify-between items-center text-lg font-bold">
+                                <span>Total</span>
+                                <span class="text-brand-600" id="total">₦0.00</span>
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="processPayment()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                            <i class="fas fa-lock"></i> Pay Securely Now
+                        </button>
+
+                        <div class="flex justify-center gap-4 mt-4 opacity-50">
+                            <i class="fab fa-cc-visa text-3xl"></i>
+                            <i class="fab fa-cc-mastercard text-3xl"></i>
+                            <i class="fas fa-credit-card text-3xl"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mt-8 grid md:grid-cols-3 gap-4 text-center">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <i class="fas fa-shield-alt text-green-500 text-2xl mb-2"></i>
+                    <p class="text-sm font-semibold">Secure Payment</p>
+                    <p class="text-xs text-gray-500">256-bit SSL encryption</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <i class="fas fa-receipt text-brand-500 text-2xl mb-2"></i>
+                    <p class="text-sm font-semibold">Instant Receipt</p>
+                    <p class="text-xs text-gray-500">Email confirmation</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <i class="fas fa-headset text-purple-500 text-2xl mb-2"></i>
+                    <p class="text-sm font-semibold">24/7 Support</p>
+                    <p class="text-xs text-gray-500">Call: 07036442528</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Get In Touch</h2>
+                    <p class="text-gray-600 mb-8">Ready to find your next great hire? Contact us today for a consultation.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600 text-xl flex-shrink-0">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900">Phone</h3>
+                                <p class="text-gray-600">07036442528</p>
+                                <p class="text-sm text-gray-500">Available 24/7</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 text-xl flex-shrink-0">
+                                <i class="fab fa-tiktok"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900">TikTok</h3>
+                                <a href="https://tiktok.com/@rajelastaffingagency" target="_blank" class="text-brand-600 hover:underline">@rajelastaffingagency</a>
+                                <p class="text-sm text-gray-500">Follow us for job updates</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 text-xl flex-shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900">Email</h3>
+                                <p class="text-gray-600">info@rajelastaffing.com</p>
+                                <p class="text-sm text-gray-500">Response within 2 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-600 text-xl flex-shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-gray-900">Office</h3>
+                                <p class="text-gray-600">Lagos, Nigeria</p>
+                                <p class="text-sm text-gray-500">Open Mon-Fri 8AM-6PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Quick Contact</h3>
+                    <form id="contactForm" class="space-y-4">
+                        <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 outline-none transition">
+                        <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 outline-none transition">
+                        <textarea rows="4" placeholder="How can we help you?" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 outline-none transition"></textarea>
+                        <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-lg transition">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-brand-600 rounded flex items-center justify-center font-bold">R</div>
+                        <span class="font-bold text-xl">RAJELA</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Connecting talent with opportunity. Professional staffing solutions for businesses of all sizes.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Temporary Staffing</a></li>
+                        <li><a href="#" class="hover:text-white transition">Permanent Placement</a></li>
+                        <li><a href="#" class="hover:text-white transition">Executive Search</a></li>
+                        <li><a href="#" class="hover:text-white transition">Payroll Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Connect</h4>
+                    <div class="flex gap-4">
+                        <a href="https://tiktok.com/@rajelastaffingagency" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-brand-600 transition">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-brand-600 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-brand-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-400">Call: 07036442528</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-400">&copy; 2024 RAJELA Staffing Agency. All rights reserved.</p>
+                <div class="flex gap-4 mt-4 md:mt-0 text-sm text-gray-400">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Modal -->
+    <div id="adminModal" class="modal">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 slide-in">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Admin Access</h2>
+                <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="loginForm">
+                <p class="text-gray-600 mb-4">Enter your admin credentials to access the dashboard.</p>
+                <input type="password" id="adminPass" placeholder="Enter admin password" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 outline-none mb-4">
+                <button onclick="checkAdmin()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-lg transition">
+                    Login
+                </button>
+                <p class="text-xs text-gray-500 mt-2">Default: admin123 (Change immediately)</p>
+            </div>
+
+            <div id="adminPanel" class="hidden">
+                <div class="space-y-4">
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                        <h3 class="font-bold text-green-800 mb-2">Welcome, Admin</h3>
+                        <p class="text-sm text-green-700">You have full control of the site.</p>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <button onclick="alert('Staff Requests: 3 new requests pending review')" class="w-full text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg flex justify-between items-center">
+                            <span>View Staff Requests</span>
+                            <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">3</span>
+                        </button>
+                        <button onclick="alert('Payments: Last payment received 2 hours ago')" class="w-full text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg flex justify-between items-center">
+                            <span>Payment History</span>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </button>
+                        <button onclick="alert('Edit Mode: Click any text to edit')" class="w-full text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg">
+                            Toggle Edit Mode
+                        </button>
+                        <button onclick="alert('Content updated successfully')" class="w-full text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg">
+                            Update Content
+                        </button>
+                    </div>
+
+                    <button onclick="logoutAdmin()" class="w-full border-2 border-red-500 text-red-500 hover:bg-red-50 font-bold py-3 rounded-lg transition mt-4">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="bg-white rounded-2xl p-8 max-w-sm w-full mx-4 text-center slide-in">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-3xl mx-auto mb-4">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Success!</h3>
+            <p class="text-gray-600 mb-6" id="successMessage">Your request has been submitted successfully.</p>
+            <button onclick="closeSuccessModal()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-lg transition">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Animation on scroll
+        function animateValue(id, start, end, duration) {
+            let obj = document.getElementById(id);
+            let range = end - start;
+            let minTimer = 50;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            stepTime = Math.max(stepTime, minTimer);
+            let startTime = new Date().getTime();
+            let endTime = startTime + duration;
+            let timer;
+          
+            function run() {
+                let now = new Date().getTime();
+                let remaining = Math.max((endTime - now) / duration, 0);
+                let value = Math.round(end - (remaining * range));
+                obj.innerHTML = value + (id === 'stat3' ? '%' : '+');
+                if (value == end) {
+                    clearInterval(timer);
+                }
+            }
+            
+            timer = setInterval(run, stepTime);
+            run();
+        }
+
+        // Trigger animations when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateValue("stat1", 0, 2500, 2000);
+                    animateValue("stat2", 0, 500, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+        
+        observer.observe(document.getElementById("stat1"));
+
+        // Smooth scroll
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Payment calculation
+        document.getElementById('payAmount').addEventListener('input', function(e) {
+            let amount = parseFloat(e.target.value) || 0;
+            let fee = amount * 0.015;
+            let total = amount + fee;
+            
+            document.getElementById('subtotal').textContent = '₦' + amount.toLocaleString('en-NG', {minimumFractionDigits: 2});
+            document.getElementById('fee').textContent = '₦' + fee.toLocaleString('en-NG', {minimumFractionDigits: 2});
+            document.getElementById('total').textContent = '₦' + total.toLocaleString('en-NG', {minimumFractionDigits: 2});
+        });
+
+        // Payment processing
+        function processPayment() {
+            let amount = document.getElementById('payAmount').value;
+            let email = document.getElementById('payEmail').value;
+            let name = document.getElementById('payName').value;
+            
+            if (!amount || !email || !name) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Simulate Paystack integration (replace with actual key)
+            // In production, use: PaystackPop.setup({...})
+            
+            // For demo purposes:
+            showSuccess('Payment initiated! You will receive a secure checkout link via email to complete your payment of ₦' + parseFloat(amount).toLocaleString());
+            
+            // Clear form
+            document.getElementById('paymentForm').reset();
+            document.getElementById('subtotal').textContent = '₦0.00';
+            document.getElementById('fee').textContent = '₦0.00';
+            document.getElementById('total').textContent = '₦0.00';
+        }
+
+        // Form submissions
+        document.getElementById('staffRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showSuccess('Staff request submitted successfully! We will contact you within 24 hours.');
+            this.reset();
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showSuccess('Message sent! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Modal functions
+        function openAdminModal() {
+            document.getElementById('adminModal').classList.add('active');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').classList.remove('active');
+        }
+
+        function checkAdmin() {
+            let pass = document.getElementById('adminPass').value;
+            if (pass === 'admin123') { // Change this password in production
+                document.getElementById('loginForm').classList.add('hidden');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                localStorage.setItem('rajelaAdmin', 'true');
+            } else {
+                alert('Incorrect password');
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('rajelaAdmin');
+            closeAdminModal();
+        }
+
+        function showSuccess(msg) {
+            document.getElementById('successMessage').textContent = msg;
+            document.getElementById('successModal').classList.add('active');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        // Check if already logged in
+        if (localStorage.getItem('rajelaAdmin')) {
+            // Auto-login for demo (remove in production)
+        }
+
+        // Close modals on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+
+        // Mobile menu toggle (simplified)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add any initialization here
+        });
+    </script>
+</body>
+</html>
